@@ -10,12 +10,14 @@ export default function App() {
   const [backendResponse, setBackendResponse] = useState(null);
   const [view, setView] = useState('user'); // 'user' or 'valet'
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+
   // Fetch tickets from backend
   const fetchTickets = async () => {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('http://localhost:4000/api/tickets');
+      const res = await fetch(`${API_BASE_URL}/api/tickets`);
       if (!res.ok) throw new Error('Failed to fetch tickets');
       const data = await res.json();
       setTickets(data);
@@ -40,7 +42,7 @@ export default function App() {
     e.preventDefault();
     setError('');
     try {
-      const res = await fetch('http://localhost:4000/api/tickets', {
+      const res = await fetch(`${API_BASE_URL}/api/tickets`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
@@ -72,7 +74,7 @@ export default function App() {
               interval: event.interval,
             };
             setSensorData({ gps, imu });
-            fetch('http://localhost:4000/api/sensordata', {
+            fetch(`${API_BASE_URL}/api/sensordata`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ gps, imu, userId: form.userId || 'demoUser' }),

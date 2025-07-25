@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+
 const statusOptions = [
   'requested',
   'dropped-off',
@@ -16,7 +18,7 @@ export default function ValetDashboard() {
 
   const fetchTickets = () => {
     setLoading(true);
-    fetch('http://localhost:4000/api/tickets')
+    fetch(`${API_BASE_URL}/api/tickets`)
       .then(res => res.json())
       .then(data => setTickets(data))
       .catch(err => setError('Failed to fetch tickets'))
@@ -29,7 +31,7 @@ export default function ValetDashboard() {
 
   const handleStatusChange = (id, newStatus) => {
     setUpdatingId(id);
-    fetch(`http://localhost:4000/api/tickets/${id}`, {
+    fetch(`${API_BASE_URL}/api/tickets/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status: newStatus }),
