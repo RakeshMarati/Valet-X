@@ -2,7 +2,7 @@ services:
   - type: web
     name: valet-x-backend
     env: node
-    buildCommand: npm install
+    buildCommand: npm run install-backend
     startCommand: npm start
     envVars:
       - key: NODE_ENV

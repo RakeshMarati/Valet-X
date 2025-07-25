@@ -1,0 +1,16 @@
+{
+  "name": "valet-x",
+  "version": "1.0.0",
+  "description": "Intelligent Valet System",
+  "main": "backend/index.js",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "dev": "cd backend && npm run dev",
+    "install-backend": "cd backend && npm install",
+    "install-frontend": "cd frontend && npm install",
+    "build-frontend": "cd frontend && npm run build"
+  },
+  "keywords": ["valet", "parking", "intelligent", "system"],
+  "author": "RakeshMarati",
+  "license": "MIT"
+} 
